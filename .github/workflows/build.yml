@@ -13,6 +13,9 @@ jobs:
       - name: Extrair projeto
         run: unzip -q ShizukuLite.zip
 
+      - name: Ativar AndroidX
+        run: echo "android.useAndroidX=true" >> ShizukuLite/gradle.properties
+
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
