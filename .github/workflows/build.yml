@@ -21,18 +21,15 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Aceitar licenças do Android SDK
-        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses || true
-
-      - uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: 8.9
+      - name: Dar permissao ao gradlew
+        run: chmod +x ShizukuLite/gradlew
 
       - name: Compilar APK de debug
         working-directory: ShizukuLite
-        run: gradle assembleDebug
+        run: ./gradlew assembleDebug
 
       - uses: actions/upload-artifact@v4
         with:
           name: ShizukuLite-debug-apk
           path: ShizukuLite/app/build/outputs/apk/debug/*.apk
+          
